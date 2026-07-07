@@ -85,14 +85,26 @@ public class RuntimeManager {
         File apkFile = getApkFile();
         if (!apkFile.exists()) return;
 
-        Uri uri = FileProvider.getUriForFile(context,
+        Uri apkUri = FileProvider.getUriForFile(context,
             context.getPackageName() + ".fileprovider", apkFile);
 
         Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-        intent.setData(uri);
+        intent.setData(apkUri);
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(intent);
+            return;
+        }
+
+        Intent fallback = new Intent(Intent.ACTION_VIEW);
+        fallback.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        fallback.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        fallback.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (fallback.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(fallback);
+        }
     }
 
     public void openWinlator() {

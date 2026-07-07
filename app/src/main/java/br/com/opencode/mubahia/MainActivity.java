@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     progressCard.setVisibility(View.GONE);
                     downloadBtn.setEnabled(true);
-                    new AlertDialog.Builder(this)
+                    new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Erro")
                         .setMessage("Falha ao baixar: " + e.getMessage())
                         .setPositiveButton("OK", null)
@@ -126,14 +126,22 @@ public class MainActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     progressCard.setVisibility(View.GONE);
-                    runtimeManager.installWinlator();
+                    try {
+                        runtimeManager.installWinlator();
+                    } catch (Exception e2) {
+                        new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Erro")
+                            .setMessage("Nao foi possivel instalar: " + e2.getMessage())
+                            .setPositiveButton("OK", null)
+                            .show();
+                    }
                 });
 
             } catch (Exception e) {
                 runOnUiThread(() -> {
                     progressCard.setVisibility(View.GONE);
                     installWinlatorBtn.setEnabled(true);
-                    new AlertDialog.Builder(this)
+                    new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Erro")
                         .setMessage("Falha ao baixar Winlator: " + e.getMessage())
                         .setPositiveButton("OK", null)
