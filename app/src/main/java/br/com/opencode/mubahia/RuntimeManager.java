@@ -331,12 +331,15 @@ public class RuntimeManager {
             for (File f : subFiles) {
                 File dest = new File(dir, f.getName());
                 if (!f.renameTo(dest)) {
-                    if (f.isDirectory()) {
-                        copyDirectory(f, dest);
-                        deleteDir(f);
-                    } else {
-                        copyFile(f, dest);
-                        f.delete();
+                    try {
+                        if (f.isDirectory()) {
+                            copyDirectory(f, dest);
+                            deleteDir(f);
+                        } else {
+                            copyFile(f, dest);
+                            f.delete();
+                        }
+                    } catch (IOException ignored) {
                     }
                 }
             }
