@@ -1,0 +1,7 @@
+*.exe filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.bmd filter=lfs diff=lfs merge=lfs -text
+*.ozj filter=lfs diff=lfs merge=lfs -text
+*.ozt filter=lfs diff=lfs merge=lfs -text
+# Assets do jogo (grandes)
+app/src/main/assets/mubahia/** filter=lfs diff=lfs merge=lfs -text linguist-generated

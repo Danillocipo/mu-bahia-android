@@ -1,0 +1,32 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/build
+/winlator/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+.navigation/
+*.log
+*.tmp
+
+# Game assets (muito grandes para git - ~800MB)
+# Use download_runtime.ps1 para copiar localmente
+# CI baixa automaticamente de release
+app/src/main/assets/mubahia/
+app/src/main/assets/wine/
+app/src/main/assets/box64/
+*.tar.xz
+*.zip

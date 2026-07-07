@@ -1,0 +1,5 @@
+-keep class br.com.opencode.mubahia.** { *; }
+-keepattributes *Annotation*
+-keep class androidx.** { *; }
+-dontwarn javax.annotation.**
+-dontwarn org.codehaus.**

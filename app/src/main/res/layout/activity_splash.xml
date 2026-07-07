@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a2e">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/splash_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <TextView
+            android:id="@+id/splashTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MU BAHIA"
+            android:textColor="#e94560"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.15"
+            android:fontFamily="sans-serif-black"
+            android:alpha="0" />
+
+        <TextView
+            android:id="@+id/splashSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANDROID EDITION"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:letterSpacing="0.3"
+            android:layout_marginTop="8dp"
+            android:alpha="0" />
+
+        <ProgressBar
+            android:id="@+id/splashProgress"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="48dp"
+            android:indeterminateTint="#e94560"
+            android:visibility="gone"
+            android:alpha="0" />
+    </LinearLayout>
+</FrameLayout>

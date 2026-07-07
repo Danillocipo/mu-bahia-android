@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a2e"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:id="@+id/contentRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Header with gradient line -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MU BAHIA"
+                android:textColor="#e94560"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12"
+                android:shadowColor="#e94560"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="20" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Private Server"
+                android:textColor="#0f3460"
+                android:textSize="14sp"
+                android:letterSpacing="0.25"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Progress Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/progressCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#16213e"
+                app:cardElevation="8dp"
+                app:contentPadding="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:progressTint="#e94560"
+                        android:progressBackgroundTint="#0f3460"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:max="100"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/statusText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inicializando..."
+                        android:textColor="#8899aa"
+                        android:textSize="14sp"
+                        android:layout_marginTop="16dp" />
+
+                    <TextView
+                        android:id="@+id/percentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textColor="#e94560"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:id="@+id/retryBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tentar novamente"
+                        android:textColor="#e94560"
+                        android:textSize="14sp"
+                        android:layout_marginTop="16dp"
+                        android:visibility="gone"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Launch Button -->
+            <Button
+                android:id="@+id/launchBtn"
+                android:layout_width="280dp"
+                android:layout_height="56dp"
+                android:text="JOGAR"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:enabled="false"
+                android:alpha="0"
+                android:background="@drawable/btn_primary" />
+
+            <Button
+                android:id="@+id/settingsBtn"
+                android:layout_width="280dp"
+                android:layout_height="48dp"
+                android:text="Configuracoes"
+                android:textSize="13sp"
+                android:textColor="#8899aa"
+                android:enabled="false"
+                android:alpha="0"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_secondary" />
+
+            <!-- Footer -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Baseado em Winlator + Box86/Box64"
+                android:textColor="#334466"
+                android:textSize="11sp"
+                android:layout_marginTop="48dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
