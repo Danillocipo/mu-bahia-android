@@ -5,12 +5,17 @@ import android.os.Build;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.compress.compressors.xz.XZCompressorInputStream;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.BufferedInputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -52,7 +57,7 @@ public class RuntimeManager {
         runtimeDir.mkdirs();
 
         // Download Wine ARM64 build from GitHub release
-        String wineUrl = "https://github.com/brunodev85/winlator/releases/download/v10.1/wine-arm64.tar.xz";
+        String wineUrl = "https://github.com/Kron4ek/Wine-Builds/releases/download/11.0/wine-11.0-staging-tkg-amd64-wow64.tar.xz";
         File wineArchive = new File(runtimeDir, "wine.tar.xz");
 
         if (!wineArchive.exists()) {
@@ -63,6 +68,7 @@ public class RuntimeManager {
         cb.onProgress(50, "Extraindo Wine...");
         extractTarXz(wineArchive, wineDir);
         wineArchive.delete();
+        flatten(wineDir);
 
         // Make binaries executable
         setExecutable(wineDir);
@@ -281,9 +287,25 @@ public class RuntimeManager {
 
     private void extractTarXz(File archive, File dest) throws Exception {
         dest.mkdirs();
-        ProcessBuilder pb = new ProcessBuilder("tar", "-xf", archive.getAbsolutePath(), "-C", dest.getAbsolutePath());
-        Process p = pb.start();
-        p.waitFor();
+        try (InputStream fis = new FileInputStream(archive);
+             InputStream bis = new BufferedInputStream(fis);
+             XZCompressorInputStream xzIn = new XZCompressorInputStream(bis);
+             TarArchiveInputStream tarIn = new TarArchiveInputStream(xzIn)) {
+            TarArchiveEntry entry;
+            byte[] buf = new byte[8192];
+            while ((entry = tarIn.getNextTarEntry()) != null) {
+                File outFile = new File(dest, entry.getName());
+                if (entry.isDirectory()) {
+                    outFile.mkdirs();
+                } else {
+                    outFile.getParentFile().mkdirs();
+                    try (FileOutputStream fos = new FileOutputStream(outFile)) {
+                        int len;
+                        while ((len = tarIn.read(buf)) != -1) fos.write(buf, 0, len);
+                    }
+                }
+            }
+        }
     }
 
     private void setExecutable(File dir) {
