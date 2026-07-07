@@ -15,7 +15,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuBahia"
-        android:extractNativeLibs="true"
         android:largeHeap="true"
         android:hardwareAccelerated="true">
 
