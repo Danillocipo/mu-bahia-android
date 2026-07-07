@@ -88,7 +88,7 @@ public class RuntimeManager {
 
         destDir.mkdirs();
         String gameUrl = context.getSharedPreferences("mubahia", Context.MODE_PRIVATE)
-            .getString("game_url", "https://github.com/Danillocipo/mu-bahia-android/releases/latest/download/mubahia-assets.zip");
+            .getString("game_url", "https://github.com/Danillocipo/mu-bahia-android/releases/download/v1.0-assets/mu-bahia-android.zip");
         File zipFile = new File(destDir.getParentFile(), "mubahia.zip");
 
         downloadFile(gameUrl, zipFile, cb);
