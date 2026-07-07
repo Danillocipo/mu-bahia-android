@@ -33,11 +33,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-
 
-      - name: Baixar Wine + Box64 runtime
-        run: |
-          chmod +x ci_download_runtime.sh
-          bash ci_download_runtime.sh
-
       - name: Build APK Release
         run: ./gradlew assembleRelease --no-daemon
 
