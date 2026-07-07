@@ -19,7 +19,6 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <!-- Header with gradient line -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,18 +35,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Private Server"
+                android:text="Android Launcher"
                 android:textColor="#0f3460"
                 android:textSize="14sp"
                 android:letterSpacing="0.25"
                 android:layout_marginBottom="32dp" />
 
-            <!-- Progress Card -->
+            <!-- Progress -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/progressCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
+                android:visibility="gone"
                 app:cardCornerRadius="16dp"
                 app:cardBackgroundColor="#16213e"
                 app:cardElevation="8dp"
@@ -73,7 +73,7 @@
                         android:id="@+id/statusText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Inicializando..."
+                        android:text="..."
                         android:textColor="#8899aa"
                         android:textSize="14sp"
                         android:layout_marginTop="16dp" />
@@ -87,55 +87,126 @@
                         android:textSize="28sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
-
-                    <TextView
-                        android:id="@+id/retryBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tentar novamente"
-                        android:textColor="#e94560"
-                        android:textSize="14sp"
-                        android:layout_marginTop="16dp"
-                        android:visibility="gone"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="?attr/selectableItemBackground" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Launch Button -->
-            <Button
-                android:id="@+id/launchBtn"
-                android:layout_width="280dp"
-                android:layout_height="56dp"
-                android:text="JOGAR"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:enabled="false"
-                android:alpha="0"
-                android:background="@drawable/btn_primary" />
+            <!-- Setup card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/setupCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#16213e"
+                app:cardElevation="8dp"
+                app:contentPadding="24dp">
 
-            <Button
-                android:id="@+id/settingsBtn"
-                android:layout_width="280dp"
-                android:layout_height="48dp"
-                android:text="Configuracoes"
-                android:textSize="13sp"
-                android:textColor="#8899aa"
-                android:enabled="false"
-                android:alpha="0"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/btn_secondary" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <!-- Footer -->
+                    <TextView
+                        android:id="@+id/infoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bem-vindo!"
+                        android:textColor="#8899aa"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:layout_marginBottom="24dp" />
+
+                    <Button
+                        android:id="@+id/downloadBtn"
+                        android:layout_width="280dp"
+                        android:layout_height="56dp"
+                        android:text="BAIXAR MU BAHIA"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/btn_primary" />
+
+                    <Button
+                        android:id="@+id/installWinlatorBtn"
+                        android:layout_width="280dp"
+                        android:layout_height="56dp"
+                        android:text="INSTALAR WINLATOR"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:visibility="gone"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/btn_primary" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Done card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/doneCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#16213e"
+                app:cardElevation="8dp"
+                app:contentPadding="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tudo pronto!"
+                        android:textColor="#e94560"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/doneInfoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#8899aa"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp" />
+
+                    <Button
+                        android:id="@+id/openWinlatorBtn"
+                        android:layout_width="280dp"
+                        android:layout_height="56dp"
+                        android:text="ABRIR WINLATOR"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/btn_primary" />
+
+                    <Button
+                        android:id="@+id/deleteBtn"
+                        android:layout_width="280dp"
+                        android:layout_height="48dp"
+                        android:text="Apagar arquivos"
+                        android:textSize="13sp"
+                        android:textColor="#ff4444"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/btn_secondary" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Baseado em Winlator + Box86/Box64"
+                android:text="Baixa os arquivos do Mu Bahia e instala o Winlator"
                 android:textColor="#334466"
                 android:textSize="11sp"
-                android:layout_marginTop="48dp" />
+                android:gravity="center"
+                android:layout_marginTop="24dp" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
