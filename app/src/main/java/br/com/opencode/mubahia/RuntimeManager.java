@@ -208,7 +208,7 @@ public class RuntimeManager {
             pb.redirectErrorStream(true);
             Process process = pb.start();
 
-            Log.i(TAG, "Jogo iniciado com PID: " + process.pid());
+            Log.i(TAG, "Jogo iniciado");
         } catch (IOException e) {
             Log.e(TAG, "Falha ao iniciar", e);
         }
