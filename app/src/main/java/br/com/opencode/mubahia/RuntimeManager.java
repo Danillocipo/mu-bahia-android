@@ -95,6 +95,7 @@ public class RuntimeManager {
         cb.onProgress(70, "Extraindo arquivos do jogo...");
         unzip(zipFile, destDir);
         zipFile.delete();
+        flatten(destDir);
         cb.onProgress(100, "");
     }
 
@@ -319,6 +320,28 @@ public class RuntimeManager {
         try (OutputStream os = new FileOutputStream(f)) {
             os.write(content.getBytes(StandardCharsets.UTF_8));
         }
+    }
+
+    private void flatten(File dir) {
+        File[] children = dir.listFiles();
+        if (children == null || children.length != 1 || !children[0].isDirectory()) return;
+        File sub = children[0];
+        File[] subFiles = sub.listFiles();
+        if (subFiles != null) {
+            for (File f : subFiles) {
+                File dest = new File(dir, f.getName());
+                if (!f.renameTo(dest)) {
+                    if (f.isDirectory()) {
+                        copyDirectory(f, dest);
+                        deleteDir(f);
+                    } else {
+                        copyFile(f, dest);
+                        f.delete();
+                    }
+                }
+            }
+        }
+        sub.delete();
     }
 
     private void deleteDir(File dir) {
