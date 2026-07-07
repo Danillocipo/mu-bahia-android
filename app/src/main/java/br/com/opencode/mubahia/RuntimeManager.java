@@ -38,9 +38,12 @@ public class RuntimeManager {
     public boolean isRuntimeReady() {
         File wineBin = new File(wineDir, "bin/wine");
         File box64Bin = new File(box64Dir, "box64");
+        File gameDir = new File(context.getFilesDir(), "mubahia");
+        boolean gameReady = gameDir.exists() && gameDir.listFiles() != null && gameDir.listFiles().length > 0;
         return (wineBin.exists() || new File(wineDir, "wine").exists())
             && (box64Bin.exists())
-            && prefixDir.exists();
+            && prefixDir.exists()
+            && gameReady;
     }
 
     public void downloadRuntime(ProgressCallback cb) throws Exception {
@@ -85,7 +88,7 @@ public class RuntimeManager {
 
         destDir.mkdirs();
         String gameUrl = context.getSharedPreferences("mubahia", Context.MODE_PRIVATE)
-            .getString("game_url", "https://github.com/seuusuario/mubahia-assets/releases/latest/download/mubahia.zip");
+            .getString("game_url", "https://github.com/Danillocipo/mu-bahia-android/releases/latest/download/mubahia-assets.zip");
         File zipFile = new File(destDir.getParentFile(), "mubahia.zip");
 
         downloadFile(gameUrl, zipFile, cb);
